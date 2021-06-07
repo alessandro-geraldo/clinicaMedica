@@ -15,16 +15,18 @@ public class Paciente {
     private Long codPaciente;
     private String nomePaciente;
     private int telPaciente;
+    private String cidade;
     private double pressaoArt;
     private double peso;
     private double altura;
-    private String convenio;
+    private Convenio convenio;
 
     public Paciente(){}
 
-    public Paciente(String nomePaciente, int telPaciente, double pressaoArt, double peso, double altura, String convenio) {
+    public Paciente(String nomePaciente, int telPaciente,String cidade, double pressaoArt, double peso, double altura, Convenio convenio) {
         this.nomePaciente = nomePaciente;
         this.telPaciente = telPaciente;
+        this.cidade = cidade;
         this.pressaoArt = pressaoArt;
         this.peso = peso;
         this.altura = altura;
@@ -41,6 +43,14 @@ public class Paciente {
 
     public int getTelPaciente() {
         return telPaciente;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
     public void setTelPaciente(int telPaciente) {
@@ -71,11 +81,11 @@ public class Paciente {
         this.altura = altura;
     }
 
-    public String getConvenio() {
+    public Convenio getConvenio() {
         return convenio;
     }
 
-    public void setConvenio(String convenio) {
+    public void setConvenio(Convenio convenio) {
         this.convenio = convenio;
     }
 

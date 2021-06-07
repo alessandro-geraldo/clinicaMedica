@@ -13,11 +13,11 @@ public class Medico {
     private Long codMedico;
     private String nomeMedico;
     private String especialidade;
-    private String convenio;
+    private Convenio convenio;
 
     public Medico(){}
 
-    public Medico(String nomeMedico, String especialidade, String convenio) {
+    public Medico(String nomeMedico, String especialidade, Convenio convenio) {
         this.nomeMedico = nomeMedico;
         this.especialidade = especialidade;
         this.convenio = convenio;
@@ -47,11 +47,11 @@ public class Medico {
         this.especialidade = especialidade;
     }
 
-    public String getConvenio() {
+    public Convenio getConvenio() {
         return convenio;
     }
 
-    public void setConvenio(String convenio) {
+    public void setConvenio(Convenio convenio) {
         this.convenio = convenio;
     }
 }
