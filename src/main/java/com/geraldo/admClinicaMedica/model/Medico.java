@@ -1,9 +1,8 @@
 package com.geraldo.admClinicaMedica.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Medico {
@@ -13,14 +12,32 @@ public class Medico {
     private Long codMedico;
     private String nomeMedico;
     private String especialidade;
-    private Convenio convenio;
+
+    @OneToMany(mappedBy = "medico")
+    private Set<Consulta> consultas = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "tab_medico_convenio",
+    joinColumns = @JoinColumn(name = "cod_medico"),
+    inverseJoinColumns = @JoinColumn(name = "cod_convenio"))
+    private Set<Convenio> convenios = new HashSet<>();
 
     public Medico(){}
 
-    public Medico(String nomeMedico, String especialidade, Convenio convenio) {
+    public Medico(Long codMedico, String nomeMedico, String especialidade, Set<Consulta> consultas, Set<Convenio> convenios) {
+        this.codMedico = codMedico;
         this.nomeMedico = nomeMedico;
         this.especialidade = especialidade;
-        this.convenio = convenio;
+        this.consultas = consultas;
+        this.convenios = convenios;
+    }
+
+    public Set<Consulta> getConsultas() {
+        return consultas;
+    }
+
+    public Set<Convenio> getConvenios() {
+        return convenios;
     }
 
     public Long getCodMedico() {
@@ -47,11 +64,5 @@ public class Medico {
         this.especialidade = especialidade;
     }
 
-    public Convenio getConvenio() {
-        return convenio;
-    }
 
-    public void setConvenio(Convenio convenio) {
-        this.convenio = convenio;
-    }
 }

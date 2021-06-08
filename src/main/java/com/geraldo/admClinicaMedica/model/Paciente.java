@@ -2,10 +2,9 @@ package com.geraldo.admClinicaMedica.model;
 
 import org.springframework.beans.factory.annotation.Value;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Paciente {
@@ -13,17 +12,29 @@ public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long codPaciente;
+    @Column(length = 60, nullable = false)
     private String nomePaciente;
+    @Column(nullable = false)
     private int telPaciente;
+    @Column(length = 20,nullable = false)
     private String cidade;
+    @Column(nullable = false)
     private double pressaoArt;
+    @Column(nullable = false)
     private double peso;
+    @Column(nullable = false)
     private double altura;
-    private Convenio convenio;
+
+    @OneToMany(mappedBy = "paciente")
+    private Set<Consulta> consultas = new HashSet<>();
+
+     @ManyToOne
+     @JoinColumn(name = "codConvenio")
+     private Convenio convenio;
 
     public Paciente(){}
 
-    public Paciente(String nomePaciente, int telPaciente,String cidade, double pressaoArt, double peso, double altura, Convenio convenio) {
+    public Paciente(String nomePaciente, int telPaciente,String cidade, double pressaoArt, double peso, double altura) {
         this.nomePaciente = nomePaciente;
         this.telPaciente = telPaciente;
         this.cidade = cidade;

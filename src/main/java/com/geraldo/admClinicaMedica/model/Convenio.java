@@ -1,9 +1,10 @@
 package com.geraldo.admClinicaMedica.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Convenio {
@@ -12,11 +13,20 @@ public class Convenio {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long codConvenio;
     private String nomeConvenio;
+    @JsonIgnore
+    @OneToMany(mappedBy = "convenio")
+    private Set<Paciente> pacientes = new HashSet<>();
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "convenios")
+    private Set<Medico> medicos = new HashSet<>();
 
     public Convenio(){}
 
-    public Convenio(String nomeConvenio) {
+    public Convenio(Long codConvenio, String nomeConvenio, Set<Paciente> pacientes) {
+        this.codConvenio = codConvenio;
         this.nomeConvenio = nomeConvenio;
+        this.pacientes = pacientes;
     }
 
     public Long getCodConvenio() {
@@ -33,5 +43,9 @@ public class Convenio {
 
     public void setNomeConvenio(String nomeConvenio) {
         this.nomeConvenio = nomeConvenio;
+    }
+
+    public Set<Paciente> getPacientes() {
+        return pacientes;
     }
 }

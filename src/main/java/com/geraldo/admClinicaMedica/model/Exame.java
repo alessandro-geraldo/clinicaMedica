@@ -1,10 +1,11 @@
 package com.geraldo.admClinicaMedica.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Exame {
@@ -14,14 +15,29 @@ public class Exame {
     private Long codExame;
     private String nomeExame;
     private String descricao;
-    private List Laboratorio;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "exames")
+    private Set<Consulta> consultas = new HashSet<>();
 
-    public Exame(){}
+    @ManyToMany
+    @JoinTable(name = "tb_exame_laboratorio",
+            joinColumns = @JoinColumn(name = "codExame"),
+            inverseJoinColumns = @JoinColumn(name = "codLaboratorio"))
+    private Set<Laboratorio> laboratorios = new HashSet<>();
 
-    public Exame(String nomeExame, String descricao, List laboratorio) {
+    public Exame() {
+    }
+
+//    public Exame(String nomeExame, String descricao) {
+//        this.nomeExame = nomeExame;
+//        this.descricao = descricao;
+//    }
+
+    public Exame(Long codExame, String nomeExame, String descricao, Set<Laboratorio> laboratorios) {
+        this.codExame = codExame;
         this.nomeExame = nomeExame;
         this.descricao = descricao;
-        Laboratorio = laboratorio;
+        this.laboratorios = laboratorios;
     }
 
     public Long getCodExame() {
@@ -48,11 +64,11 @@ public class Exame {
         this.descricao = descricao;
     }
 
-    public List getLaboratorio() {
-        return Laboratorio;
+    public Set<Laboratorio> getLaboratorios() {
+        return laboratorios;
     }
 
-    public void setLaboratorio(List laboratorio) {
-        Laboratorio = laboratorio;
+    public void setLaboratorios(Set<Laboratorio> laboratorios) {
+        this.laboratorios = laboratorios;
     }
 }

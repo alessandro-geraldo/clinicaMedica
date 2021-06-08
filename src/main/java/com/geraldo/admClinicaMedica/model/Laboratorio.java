@@ -1,9 +1,10 @@
 package com.geraldo.admClinicaMedica.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Laboratorio {
@@ -11,11 +12,20 @@ public class Laboratorio {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long codLaboratorio;
     private String nomeLaboratorio;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "laboratorios")
+    private Set<Exame> exames = new HashSet<>();
 
     public Laboratorio(){}
 
-    public Laboratorio(String nomeLaboratorio) {
+//   public Laboratorio(String nomeLaboratorio) {
+//        this.nomeLaboratorio = nomeLaboratorio;
+//    }
+
+    public Laboratorio(Long codLaboratorio, String nomeLaboratorio, Set<Exame> exames) {
+        this.codLaboratorio = codLaboratorio;
         this.nomeLaboratorio = nomeLaboratorio;
+        this.exames = exames;
     }
 
     public Long getCodLaboratorio() {
@@ -28,5 +38,13 @@ public class Laboratorio {
 
     public void setNomeLaboratorio(String nomeLaboratorio) {
         this.nomeLaboratorio = nomeLaboratorio;
+    }
+
+    public Set<Exame> getExames() {
+        return exames;
+    }
+
+    public void setExames(Set<Exame> exames) {
+        this.exames = exames;
     }
 }
