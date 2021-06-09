@@ -12,15 +12,11 @@ public class Laboratorio {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long codLaboratorio;
     private String nomeLaboratorio;
-    @JsonIgnore
+    
     @ManyToMany(mappedBy = "laboratorios")
     private Set<Exame> exames = new HashSet<>();
 
     public Laboratorio(){}
-
-//   public Laboratorio(String nomeLaboratorio) {
-//        this.nomeLaboratorio = nomeLaboratorio;
-//    }
 
     public Laboratorio(Long codLaboratorio, String nomeLaboratorio, Set<Exame> exames) {
         this.codLaboratorio = codLaboratorio;

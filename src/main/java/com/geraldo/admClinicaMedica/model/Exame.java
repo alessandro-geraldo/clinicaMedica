@@ -21,17 +21,12 @@ public class Exame {
 
     @ManyToMany
     @JoinTable(name = "tb_exame_laboratorio",
-            joinColumns = @JoinColumn(name = "codExame"),
-            inverseJoinColumns = @JoinColumn(name = "codLaboratorio"))
+            joinColumns = @JoinColumn(name = "codExame",referencedColumnName = "codExame"),
+            inverseJoinColumns = @JoinColumn(name = "codLaboratorio",referencedColumnName = "codLaboratorio"))
     private Set<Laboratorio> laboratorios = new HashSet<>();
 
     public Exame() {
     }
-
-//    public Exame(String nomeExame, String descricao) {
-//        this.nomeExame = nomeExame;
-//        this.descricao = descricao;
-//    }
 
     public Exame(Long codExame, String nomeExame, String descricao, Set<Laboratorio> laboratorios) {
         this.codExame = codExame;
