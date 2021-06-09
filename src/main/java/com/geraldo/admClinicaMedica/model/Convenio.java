@@ -13,7 +13,8 @@ public class Convenio {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long codConvenio;
     private String nomeConvenio;
-    @JsonIgnore
+
+   @JsonIgnore
     @OneToMany(mappedBy = "convenio")
     private Set<Paciente> pacientes = new HashSet<>();
 

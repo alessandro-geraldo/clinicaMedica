@@ -18,7 +18,7 @@ public class PacienteController {
     }
 
     @PostMapping
-    public void cadastraPaciente(Paciente paciente){
+    public void cadastraPaciente(@RequestBody Paciente paciente){
         pacienteRepository.save(paciente);
     }
 
@@ -26,8 +26,19 @@ public class PacienteController {
     public List<Paciente> consultaTodosPacientes(){
         return pacienteRepository.findAll();
     }
+
     @GetMapping(value = "/{id}")
-    public Paciente buscarPorCodigo(@PathVariable Long id){
-        return pacienteRepository.getById(id);
+    public Optional<Paciente> buscarPorCodigo(@PathVariable Long id){
+        return pacienteRepository.findById(id);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public void exluirPacientePorCodigo(@PathVariable Long id) {
+        pacienteRepository.deleteById(id);
+    }
+    @PutMapping
+    public void atualizaPaciente(@RequestBody Paciente paciente){
+
+    }
+
 }

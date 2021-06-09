@@ -34,13 +34,15 @@ public class Paciente {
 
     public Paciente(){}
 
-    public Paciente(String nomePaciente, int telPaciente,String cidade, double pressaoArt, double peso, double altura) {
+    public Paciente(Long codPaciente, String nomePaciente, int telPaciente, String cidade, double pressaoArt, double peso, double altura, Set<Consulta> consultas,Convenio convenio) {
+        this.codPaciente = codPaciente;
         this.nomePaciente = nomePaciente;
         this.telPaciente = telPaciente;
         this.cidade = cidade;
         this.pressaoArt = pressaoArt;
         this.peso = peso;
         this.altura = altura;
+        this.consultas = consultas;
         this.convenio = convenio;
     }
 
@@ -52,8 +54,20 @@ public class Paciente {
         this.codPaciente = codPaciente;
     }
 
+    public String getNomePaciente() {
+        return nomePaciente;
+    }
+
+    public void setNomePaciente(String nomePaciente) {
+        this.nomePaciente = nomePaciente;
+    }
+
     public int getTelPaciente() {
         return telPaciente;
+    }
+
+    public void setTelPaciente(int telPaciente) {
+        this.telPaciente = telPaciente;
     }
 
     public String getCidade() {
@@ -62,10 +76,6 @@ public class Paciente {
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
-    }
-
-    public void setTelPaciente(int telPaciente) {
-        this.telPaciente = telPaciente;
     }
 
     public double getPressaoArt() {
@@ -92,6 +102,14 @@ public class Paciente {
         this.altura = altura;
     }
 
+    public Set<Consulta> getConsultas() {
+        return consultas;
+    }
+
+    public void setConsultas(Set<Consulta> consultas) {
+        this.consultas = consultas;
+    }
+
     public Convenio getConvenio() {
         return convenio;
     }
@@ -99,12 +117,4 @@ public class Paciente {
     public void setConvenio(Convenio convenio) {
         this.convenio = convenio;
     }
-
-    public void setNomePaciente(String nomePaciente){
-        this.nomePaciente = nomePaciente;
-    }
-    public String getNomePaciente(){
-        return this.nomePaciente;
-    }
-
 }
