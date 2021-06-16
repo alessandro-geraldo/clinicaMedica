@@ -24,8 +24,7 @@ public class Consulta {
     @JoinColumn(name = "codMedico")
     private Medico medico;
 
-    @ManyToMany
-    @JoinTable(name = "tb_consulta_exame",joinColumns = @JoinColumn(name = "codConsulta"), inverseJoinColumns = @JoinColumn(name = "codExame"))
+    @OneToMany
     private Set<Exame> exames = new HashSet<>();
 
     public Consulta(){}

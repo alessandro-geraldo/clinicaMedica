@@ -34,7 +34,7 @@ public class Paciente {
 
     public Paciente(){}
 
-    public Paciente(Long codPaciente, String nomePaciente, int telPaciente, String cidade, double pressaoArt, double peso, double altura, Set<Consulta> consultas,Convenio convenio) {
+    public Paciente(Long codPaciente, String nomePaciente, int telPaciente, String cidade, double pressaoArt, double peso, double altura, Set<Consulta> consultas, Convenio convenio) {
         this.codPaciente = codPaciente;
         this.nomePaciente = nomePaciente;
         this.telPaciente = telPaciente;

@@ -12,16 +12,12 @@ public class Laboratorio {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long codLaboratorio;
     private String nomeLaboratorio;
-    
-    @ManyToMany(mappedBy = "laboratorios")
-    private Set<Exame> exames = new HashSet<>();
 
     public Laboratorio(){}
 
-    public Laboratorio(Long codLaboratorio, String nomeLaboratorio, Set<Exame> exames) {
+    public Laboratorio(Long codLaboratorio, String nomeLaboratorio) {
         this.codLaboratorio = codLaboratorio;
         this.nomeLaboratorio = nomeLaboratorio;
-        this.exames = exames;
     }
 
     public Long getCodLaboratorio() {
@@ -36,11 +32,4 @@ public class Laboratorio {
         this.nomeLaboratorio = nomeLaboratorio;
     }
 
-    public Set<Exame> getExames() {
-        return exames;
-    }
-
-    public void setExames(Set<Exame> exames) {
-        this.exames = exames;
-    }
 }

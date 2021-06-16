@@ -2,6 +2,7 @@ package com.geraldo.admClinicaMedica.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -13,31 +14,16 @@ public class Medico {
     private String nomeMedico;
     private String especialidade;
 
-    @OneToMany(mappedBy = "medico")
-    private Set<Consulta> consultas = new HashSet<>();
-
-    @ManyToMany
-    @JoinTable(name = "tab_medico_convenio",
-    joinColumns = @JoinColumn(name = "cod_medico"),
-    inverseJoinColumns = @JoinColumn(name = "cod_convenio"))
-    private Set<Convenio> convenios = new HashSet<>();
+    @ManyToOne
+    private Cooperativa cooperativa;
 
     public Medico(){}
 
-    public Medico(Long codMedico, String nomeMedico, String especialidade, Set<Consulta> consultas, Set<Convenio> convenios) {
+    public Medico(Long codMedico, String nomeMedico, String especialidade, Cooperativa cooperativa) {
         this.codMedico = codMedico;
         this.nomeMedico = nomeMedico;
         this.especialidade = especialidade;
-        this.consultas = consultas;
-        this.convenios = convenios;
-    }
-
-    public Set<Consulta> getConsultas() {
-        return consultas;
-    }
-
-    public Set<Convenio> getConvenios() {
-        return convenios;
+        this.cooperativa = cooperativa;
     }
 
     public Long getCodMedico() {

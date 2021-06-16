@@ -14,20 +14,12 @@ public class Convenio {
     private Long codConvenio;
     private String nomeConvenio;
 
-   @JsonIgnore
-    @OneToMany(mappedBy = "convenio")
-    private Set<Paciente> pacientes = new HashSet<>();
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "convenios")
-    private Set<Medico> medicos = new HashSet<>();
-
     public Convenio(){}
 
-    public Convenio(Long codConvenio, String nomeConvenio, Set<Paciente> pacientes) {
+    public Convenio(Long codConvenio, String nomeConvenio) {
         this.codConvenio = codConvenio;
         this.nomeConvenio = nomeConvenio;
-        this.pacientes = pacientes;
+
     }
 
     public Long getCodConvenio() {
@@ -46,7 +38,5 @@ public class Convenio {
         this.nomeConvenio = nomeConvenio;
     }
 
-    public Set<Paciente> getPacientes() {
-        return pacientes;
-    }
+
 }

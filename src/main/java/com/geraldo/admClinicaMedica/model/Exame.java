@@ -15,9 +15,6 @@ public class Exame {
     private Long codExame;
     private String nomeExame;
     private String descricao;
-    @JsonIgnore
-    @ManyToMany(mappedBy = "exames")
-    private Set<Consulta> consultas = new HashSet<>();
 
     @ManyToMany
     @JoinTable(name = "tb_exame_laboratorio",
