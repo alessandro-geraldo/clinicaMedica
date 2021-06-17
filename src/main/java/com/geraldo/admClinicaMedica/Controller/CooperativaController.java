@@ -19,6 +19,7 @@ public class CooperativaController {
     public List<Cooperativa> buscarCooperativas(){
        return cooperativaRepository.findAll();
     }
+
     @GetMapping("/{id}")
     public Optional<Cooperativa> buscarCooperativaPorId(@PathVariable Long id){
         return cooperativaRepository.findById(id);
