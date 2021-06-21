@@ -2,6 +2,8 @@ package com.geraldo.admClinicaMedica.Controller;
 
 import com.geraldo.admClinicaMedica.model.Paciente;
 import com.geraldo.admClinicaMedica.repository.PacienteRepository;
+import com.geraldo.admClinicaMedica.service.PacienteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +14,9 @@ import java.util.Optional;
 public class PacienteController {
 
     private PacienteRepository pacienteRepository;
+
+    @Autowired
+    private PacienteService pacienteService;
 
     public PacienteController(PacienteRepository pacienteRepository) {
         this.pacienteRepository = pacienteRepository;
@@ -36,9 +41,14 @@ public class PacienteController {
     public void exluirPacientePorCodigo(@PathVariable Long id) {
         pacienteRepository.deleteById(id);
     }
+
     @PutMapping
     public void atualizaPaciente(@RequestBody Paciente paciente){
+    }
 
+    @GetMapping(value = {"/cidade/{cidade}"})
+    public List<Paciente> listarPacientesPorCidade(@PathVariable String cidade){
+        return pacienteService.listarPacientesPorCidade(cidade);
     }
 
 }

@@ -15,6 +15,7 @@ public class Medico {
     private String especialidade;
 
     @ManyToOne
+    @JoinColumn(name = "codCooperativa")
     private Cooperativa cooperativa;
 
     public Medico(){}
@@ -50,5 +51,11 @@ public class Medico {
         this.especialidade = especialidade;
     }
 
+    public Cooperativa getCooperativa() {
+        return cooperativa;
+    }
 
+    public void setCooperativa(Cooperativa cooperativa) {
+        this.cooperativa = cooperativa;
+    }
 }

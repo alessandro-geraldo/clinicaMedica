@@ -1,7 +1,5 @@
 package com.geraldo.admClinicaMedica.model;
 
-import org.springframework.beans.factory.annotation.Value;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +8,7 @@ import java.util.Set;
 public class Paciente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codPaciente;
     @Column(length = 60, nullable = false)
     private String nomePaciente;
@@ -28,8 +26,7 @@ public class Paciente {
     @OneToMany(mappedBy = "paciente")
     private Set<Consulta> consultas = new HashSet<>();
 
-     @ManyToOne
-     @JoinColumn(name = "codConvenio")
+     @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
      private Convenio convenio;
 
     public Paciente(){}

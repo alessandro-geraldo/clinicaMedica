@@ -25,7 +25,7 @@ public class Exame {
     public Exame() {
     }
 
-    public Exame(Long codExame, String nomeExame, String descricao, Set<Laboratorio> laboratorios) {
+    public Exame(Long codExame, String nomeExame, String descricao, Set<Laboratorio> laboratorios, Consulta consulta) {
         this.codExame = codExame;
         this.nomeExame = nomeExame;
         this.descricao = descricao;
