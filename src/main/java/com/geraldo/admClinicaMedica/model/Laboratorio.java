@@ -8,10 +8,12 @@ import java.util.Set;
 
 @Entity
 public class Laboratorio {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long codLaboratorio;
     private String nomeLaboratorio;
+
     @JsonIgnore
     @ManyToMany(mappedBy = "laboratorios")
     private Set<Exame> exames = new HashSet<>();

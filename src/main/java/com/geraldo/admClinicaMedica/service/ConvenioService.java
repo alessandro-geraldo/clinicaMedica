@@ -23,7 +23,7 @@ public class ConvenioService {
     }
 
     public List<Convenio> listarConvenios(){
-       return convenioRepository.findAll();
+        return convenioRepository.findAll();
     }
 
     public Optional<Convenio> listaConvenioCod(Long id){
@@ -36,6 +36,6 @@ public class ConvenioService {
     }
 
     public Convenio atualizarConvenio(Convenio convenio){
-       return convenioRepository.save(convenio);
+        return convenioRepository.save(convenio);
     }
 }

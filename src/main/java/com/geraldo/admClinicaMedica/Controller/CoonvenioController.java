@@ -25,7 +25,7 @@ public class CoonvenioController {
 
     @GetMapping
     public List<Convenio> listAll(){
-       return convenioService.listarConvenios();
+        return convenioService.listarConvenios();
     }
 
     @GetMapping("/{id}")
@@ -39,6 +39,7 @@ public class CoonvenioController {
     public void deleteById(@PathVariable Long id)throws NotFoundException {
         convenioService.excluiConvenioPorCod(id);
     }
+
     @PutMapping
     public Convenio update(@RequestBody Convenio convenio){
         return convenioService.atualizarConvenio(convenio);

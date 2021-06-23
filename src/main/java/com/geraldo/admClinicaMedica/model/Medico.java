@@ -51,11 +51,7 @@ public class Medico {
         this.especialidade = especialidade;
     }
 
-    public Cooperativa getCooperativa() {
-        return cooperativa;
-    }
+    public Cooperativa getCooperativa() { return cooperativa; }
 
-    public void setCooperativa(Cooperativa cooperativa) {
-        this.cooperativa = cooperativa;
-    }
+    public void setCooperativa(Cooperativa cooperativa) { this.cooperativa = cooperativa; }
 }

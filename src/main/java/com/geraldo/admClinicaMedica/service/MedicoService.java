@@ -3,7 +3,6 @@ package com.geraldo.admClinicaMedica.service;
 import com.geraldo.admClinicaMedica.exception.NotFoundException;
 import com.geraldo.admClinicaMedica.model.Medico;
 import com.geraldo.admClinicaMedica.repository.MedicoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +17,7 @@ public class MedicoService {
         this.medicoRepository = medicoRepository;
     }
 
-    public Medico cadastraMedico(Medico medico){
+    public Medico cadastrarMedico(Medico medico){
         return medicoRepository.save(medico);
     }
 
@@ -36,7 +35,8 @@ public class MedicoService {
     }
 
     public Medico atualizarMedico(Medico medico)throws NotFoundException{
-        medicoRepository.findById(medico.getCodMedico()).orElseThrow(()->new NotFoundException(medico.getCodMedico()));
-       return medicoRepository.save(medico);
+        medicoRepository.findById(medico.getCodMedico())
+                        .orElseThrow(()->new NotFoundException(medico.getCodMedico()));
+        return medicoRepository.save(medico);
     }
 }

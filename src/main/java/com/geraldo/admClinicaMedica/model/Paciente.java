@@ -1,5 +1,7 @@
 package com.geraldo.admClinicaMedica.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,6 +25,7 @@ public class Paciente {
     @Column(nullable = false)
     private double altura;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "paciente")
     private Set<Consulta> consultas = new HashSet<>();
 

@@ -1,7 +1,7 @@
 package com.geraldo.admClinicaMedica.Controller;
 
+import com.geraldo.admClinicaMedica.exception.NotFoundException;
 import com.geraldo.admClinicaMedica.model.Paciente;
-import com.geraldo.admClinicaMedica.repository.PacienteRepository;
 import com.geraldo.admClinicaMedica.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,37 +13,32 @@ import java.util.Optional;
 @RequestMapping("/api/paciente")
 public class PacienteController {
 
-    private PacienteRepository pacienteRepository;
-
     @Autowired
     private PacienteService pacienteService;
 
-    public PacienteController(PacienteRepository pacienteRepository) {
-        this.pacienteRepository = pacienteRepository;
-    }
-
     @PostMapping
-    public void cadastraPaciente(@RequestBody Paciente paciente){
-        pacienteRepository.save(paciente);
+    public void cadastraPaciente(@RequestBody Paciente paciente) {
+        pacienteService.cadastrarPaciente(paciente);
     }
 
     @GetMapping
     public List<Paciente> consultaTodosPacientes(){
-        return pacienteRepository.findAll();
+        return pacienteService.consultaPaciente();
     }
 
     @GetMapping(value = "/{id}")
-    public Optional<Paciente> buscarPorCodigo(@PathVariable Long id){
-        return pacienteRepository.findById(id);
+    public Optional<Paciente> buscarPorCodigo(@PathVariable Long id) throws NotFoundException {
+        return pacienteService.consultaPacientePorCod(id);
     }
 
     @DeleteMapping(value = "/{id}")
-    public void exluirPacientePorCodigo(@PathVariable Long id) {
-        pacienteRepository.deleteById(id);
+    public void exluirPacientePorCodigo(@PathVariable Long id) throws NotFoundException {
+        pacienteService.excluirPacientePorCod(id);
     }
 
     @PutMapping
     public void atualizaPaciente(@RequestBody Paciente paciente){
+        pacienteService.atualizaPaciente(paciente);
     }
 
     @GetMapping(value = {"/cidade/{cidade}"})

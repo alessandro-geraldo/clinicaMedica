@@ -35,6 +35,7 @@ public class ConsultaController {
     public void deleteConsulta(@PathVariable Long id)throws NotFoundException {
         consultaService.excluirConsulta(id);
     }
+
     @PutMapping
     public Consulta updateConsulta(@RequestBody Consulta consulta){
        return consultaService.atualizarConsulta(consulta);

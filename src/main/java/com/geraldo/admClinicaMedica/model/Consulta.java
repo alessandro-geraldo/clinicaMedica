@@ -18,7 +18,6 @@ public class Consulta {
     private Date hora;
     private String medicacao;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "codPaciente")
     private Paciente paciente;

@@ -17,7 +17,7 @@ public class CooperativaController {
 
     @GetMapping
     public List<Cooperativa> buscarCooperativas(){
-       return cooperativaRepository.findAll();
+        return cooperativaRepository.findAll();
     }
 
     @GetMapping("/{id}")

@@ -2,7 +2,6 @@ package com.geraldo.admClinicaMedica.Controller;
 
 import com.geraldo.admClinicaMedica.exception.NotFoundException;
 import com.geraldo.admClinicaMedica.model.Medico;
-import com.geraldo.admClinicaMedica.repository.MedicoRepository;
 import com.geraldo.admClinicaMedica.service.MedicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +20,7 @@ public class MedicoController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Medico createMedico(@RequestBody Medico medico){
-       return medicoService.cadastraMedico(medico);
+       return medicoService.cadastrarMedico(medico);
     }
 
     @GetMapping

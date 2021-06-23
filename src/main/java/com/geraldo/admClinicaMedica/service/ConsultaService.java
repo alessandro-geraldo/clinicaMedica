@@ -34,6 +34,6 @@ public class ConsultaService {
     }
 
     public Consulta atualizarConsulta(Consulta consulta){
-       return consultaRepository.save(consulta);
+        return consultaRepository.save(consulta);
     }
 }

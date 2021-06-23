@@ -16,20 +16,24 @@ public class ExameController {
 
     @GetMapping
     public List<Exame> buscaExames(){
-    return exameRepository.findAll();
+        return exameRepository.findAll();
     }
+
     @GetMapping("/{id}")
     public Optional<Exame> buscaExamePorId(@PathVariable Long id){
         return exameRepository.findById(id);
     }
+
     @PostMapping
     public void cadastraExame(@RequestBody Exame exame){
         exameRepository.save(exame);
     }
+
     @PutMapping
     public void atualizaExame(@RequestBody Exame exame){
         exameRepository.save(exame);
     }
+
     @DeleteMapping("/{id}")
     public void excluiExame(@PathVariable Long id){
         exameRepository.deleteById(id);
